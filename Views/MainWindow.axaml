@@ -1,0 +1,58 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DbGames.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" 
+        x:Class="DbGames.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/gamedate.ico"
+        Title="DbGames" 
+		CanResize="False"
+		Width="800" Height="450">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="5"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="5"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="5"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="5"/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+
+		<!-- First row -->
+		<Image Grid.Row="1" Grid.Column="1" Width="48" Height="48" Source="/Assets/steam.ico" />
+		<TextBox  Grid.Row="1" Grid.Column="3" Width="200" FontSize="10" Watermark="Steam API key" Classes="revealPasswordButton" UseFloatingWatermark="True" PasswordChar="*" Text="{Binding SteamApiKey}"/>
+
+		<!-- Second row -->
+		<Image Grid.Row="3" Grid.Column="1" Width="48" Height="48" Source="/Assets/steam.ico"/>
+		<TextBox  Grid.Row="3" Grid.Column="3"  Width="200" FontSize="10" Watermark="Steam ID" Classes="revealPasswordButton" UseFloatingWatermark="True" PasswordChar="*" Text="{Binding SteamId}"/>
+
+		<!-- Third row -->
+		<Image Grid.Row="5" Grid.Column="1" Width="48" Height="48" Source="/Assets/notion.ico"/>
+		<TextBox Grid.Row="5" Grid.Column="3"  Width="200" FontSize="10" Watermark="Notion API integration token" Classes="revealPasswordButton" UseFloatingWatermark="True" PasswordChar="*" Text="{Binding NotionToken}" />
+
+		<!-- Fourth row -->
+		<Image Grid.Row="7" Grid.Column="1" Width="48" Height="48" Source="/Assets/notion.ico" />
+		<TextBox Grid.Row="7" Grid.Column="3"  Width="200" FontSize="10" Watermark="Database ID" Classes="revealPasswordButton" UseFloatingWatermark="True" PasswordChar="*" Text="{Binding DatabaseId}"/>
+
+		<Canvas Width="800" Height="400">
+			<Button  Content="Export to .csv" Canvas.Right="-215" Canvas.Bottom="-180" />
+			<Button Content="Export to Notion" Canvas.Right="-350" Canvas.Bottom="-180" Command="{Binding ExportToNotionCommand}"/>
+			<Button Content="Save settings" Canvas.Right="250" Canvas.Bottom="-180" />
+			<Button Content="Export settings" Canvas.Right="120" Canvas.Bottom="-180" />
+		</Canvas>
+	</Grid>
+</Window>
